@@ -57,6 +57,7 @@ git clone https://github.com/max456im/noemafeed-mobile.git
 cd noemafeed-mobile
 wasm-pack build --target web
 # Откройте web/index.html в браузере
+```
 
 ---
 
