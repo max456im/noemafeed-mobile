@@ -1,0 +1,37 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+
+<> dct:title "Инварианты архетипичности"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+fus:Integrity a fus:Invariant ;
+    fus:belongsToLevel fus:BiologicalLevel ;
+    rdfs:label "Инвариант Целостности"@ru ;
+    rdfs:comment "Живая система сохраняет границу 'внутри / снаружи'."@ru .
+
+fus:HierarchicalEmbedding a fus:Invariant ;
+    fus:belongsToLevel fus:BiologicalLevel ;
+    rdfs:label "Инвариант Иерархической Вложенности"@ru ;
+    rdfs:comment "Биологические структуры вложены друг в друга: клетка → орган → организм."@ru .
+
+fus:OptimizationAdaptivity a fus:Invariant ;
+    fus:belongsToLevel fus:BiologicalLevel ;
+    rdfs:label "Инвариант Оптимизации и Адаптивности"@ru ;
+    rdfs:comment "Формы оптимизируют затраты ресурсов для выполнения функций."@ru .
+
+fus:PolarityDynamicEquilibrium a fus:Invariant ;
+    fus:belongsToLevel fus:BiologicalLevel ;
+    rdfs:label "Инвариант Полярности и Динамического Равновесия"@ru ;
+    rdfs:comment "Существование пар комплементарных противоположностей (анаболизм/катаболизм)."@ru .
+
+fus:InformationHeredity a fus:Invariant ;
+    fus:belongsToLevel fus:BiologicalLevel ;
+    rdfs:label "Инвариант Информационности и Наследственности"@ru ;
+    rdfs:comment "Архетип — информационный паттерн, передаваемый через поколения."@ru .

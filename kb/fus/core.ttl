@@ -1,0 +1,54 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+
+<> dct:title "ФУС-ядро: Уровни устойчивого существования"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+# === Классы ===
+
+fus:FUS_Level a rdfs:Class ;
+    rdfs:label "Уровень ФУС"@ru ;
+    rdfs:comment "Онтологический уровень устойчивого существования."@ru .
+
+fus:Invariant a rdfs:Class ;
+    rdfs:label "Инвариант ФУС"@ru ;
+    rdfs:comment "Фундаментальный принцип, обеспечивающий устойчивость на данном уровне."@ru .
+
+# === Уровни бытия ===
+
+fus:OntologicalLevel a fus:FUS_Level ;
+    rdfs:label "Онтологический уровень"@ru ;
+    rdfs:comment "Условие возможности различения 'бытие / небытие'."@ru .
+
+fus:PhysicalLevel a fus:FUS_Level ;
+    rdfs:label "Физический уровень"@ru ;
+    rdfs:comment "Материализация структуры во времени и пространстве."@ru .
+
+fus:BiologicalLevel a fus:FUS_Level ;
+    rdfs:label "Биологический уровень"@ru ;
+    rdfs:comment "Самоподдержание через границу, наследственность и адаптацию."@ru .
+
+fus:PsychicLevel a fus:FUS_Level ;
+    rdfs:label "Психический уровень"@ru ;
+    rdfs:comment "Конституция устойчивого 'Я' в потоке изменений."@ru .
+
+fus:ExistentialLevel a fus:FUS_Level ;
+    rdfs:label "Экзистенциальный уровень"@ru ;
+    rdfs:comment "Устойчивость в условиях радикальной неопределённости и конечности."@ru .
+
+# === Операторы согласования ===
+
+fus:verticalAgreement a rdf:Property ;
+    rdfs:label "Вертикальное согласование (⊛)"@ru ;
+    rdfs:comment "Передача устойчивости от нижележащего уровня к вышележащему."@ru .
+
+fus:horizontalBalance a rdf:Property ;
+    rdfs:label "Горизонтальный баланс (×)"@ru ;
+    rdfs:comment "Согласование противоположностей внутри одного уровня."@ru .

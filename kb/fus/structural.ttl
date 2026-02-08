@@ -1,0 +1,37 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+
+<> dct:title "Инварианты структурности"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+fus:EnergyHierarchy a fus:Invariant ;
+    fus:belongsToLevel fus:PhysicalLevel ;
+    rdfs:label "Инвариант Энергетического Иерархирования"@ru ;
+    rdfs:comment "Структуры стремятся к состоянию с минимальной потенциальной энергией; устойчивость определяется энергетическим барьером."@ru .
+
+fus:SymmetryConservation a fus:Invariant ;
+    fus:belongsToLevel fus:PhysicalLevel ;
+    rdfs:label "Инвариант Симметрии и Сохранения"@ru ;
+    rdfs:comment "Существование устойчивых структур возможно благодаря законам сохранения, вытекающим из симметрий."@ru .
+
+fus:DynamicEquilibrium a fus:Invariant ;
+    fus:belongsToLevel fus:PhysicalLevel ;
+    rdfs:label "Инвариант Динамического Равновесия"@ru ;
+    rdfs:comment "Устойчивость часто поддерживается потоками (энергии, вещества), а не статикой."@ru .
+
+fus:Interaction a fus:Invariant ;
+    fus:belongsToLevel fus:PhysicalLevel ;
+    rdfs:label "Инвариант Взаимодействия"@ru ;
+    rdfs:comment "Любая структура существует исключительно через взаимодействия."@ru .
+
+fus:Emergence a fus:Invariant ;
+    fus:belongsToLevel fus:PhysicalLevel ;
+    rdfs:label "Инвариант Эмерджентности"@ru ;
+    rdfs:comment "На каждом новом уровне организации возникают качественно новые свойства."@ru .

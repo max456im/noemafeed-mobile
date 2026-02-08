@@ -1,0 +1,51 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix oc: <https://opencorporates.com/companies/> .
+
+<> dct:title "Онтологический регистр субъектов"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:source wd:Q2013, oc: ;  # Wikidata, OpenCorporates
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+# === Классы ===
+
+fus:FUS_Subject a rdfs:Class ;
+    rdfs:label "Субъект ФУС"@ru ;
+    rdfs:comment "Актор, обладающий профилем устойчивости на одном или нескольких уровнях ФУС."@ru .
+
+fus:HumanSubject a fus:FUS_Subject ;
+    rdfs:label "Человеческий субъект"@ru .
+
+fus:OrganizationalSubject a fus:FUS_Subject ;
+    rdfs:label "Организационный субъект"@ru .
+
+fus:AIAgent a fus:FUS_Subject ;
+    rdfs:label "ИИ-агент"@ru .
+
+# === Примеры субъектов ===
+
+# Человек (публичная фигура)
+wd:Q42 a fus:HumanSubject ;
+    rdfs:label "Дуглас Адамс"@en ;
+    fus:hasFUSLevel fus:PsychicLevel, fus:ExistentialLevel ;
+    fus:activeInvariant fus:MeaningCore, fus:OpennessToExperience .
+
+# Организация
+oc:us/ny/1234567 a fus:OrganizationalSubject ;
+    rdfs:label "Open Knowledge Foundation" ;
+    fus:hasFUSLevel fus:PsychicLevel, fus:ExistentialLevel ;
+    fus:activeInvariant fus:Coherence, fus:EthicalFramework .
+
+# ИИ-агент (гипотетический)
+fus:SyntheticTransponder_01 a fus:AIAgent ;
+    rdfs:label "Synthetic Transponder v1" ;
+    fus:hasFUSLevel fus:OntologicalLevel ;
+    fus:activeInvariant fus:ObserverPosition ;
+    fus:licensedUnder <https://spdx.org/licenses/GPL-3.0-or-later> .

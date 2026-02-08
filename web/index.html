@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>NoemaFeed Mobile</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <!-- Иконки PWA -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png" />
+</head>
+<body>
+  <!-- Верхний сниппет: предыдущая новость -->
+  <div id="prev-snippet" class="snippet top" onclick="loadPrev()">…</div>
+
+  <!-- Основная новость -->
+  <main id="current-news" class="news-main">
+    <h1 id="news-title">Загрузка...</h1>
+    <div id="news-analysis">Анализ будет здесь</div>
+    <button id="btn-full-text" class="btn-text" onclick="loadFullText()">📄 Показать полный анализ</button>
+    <div id="full-text" class="full-text hidden"></div>
+  </main>
+
+  <!-- Нижний сниппет: следующая новость -->
+  <div id="next-snippet" class="snippet bottom" onclick="loadNext()">…</div>
+
+  <!-- Кнопки режимов (правый нижний угол) -->
+  <div class="mode-buttons">
+    <button id="mode-constructive" class="mode-btn green" title="Конструктивный">🟢</button>
+    <button id="mode-analytical" class="mode-btn blue" title="Аналитический">🔵</button>
+    <button id="mode-critical" class="mode-btn red" title="Критический">🔴</button>
+  </div>
+
+  <!-- Кнопки действия (под анализом) -->
+  <div class="action-buttons">
+    <button id="btn-copy" class="btn-action">📋 Копировать</button>
+    <button id="btn-share" class="btn-action">📤 Поделиться</button>
+  </div>
+
+  <!-- Меню выбора RSS (левый нижний угол) -->
+  <div class="rss-menu">
+    <select id="rss-selector">
+      <option value="default">RSS: Основной поток</option>
+      <!-- Можно добавить другие -->
+    </select>
+  </div>
+
+  <!-- Основное меню (верхний левый угол) -->
+  <div class="top-left-menu">
+    <button id="main-menu" class="icon-btn">☰</button>
+  </div>
+
+  <!-- Новый чат / Экспорт (верхний правый угол) -->
+  <div class="top-right-menu">
+    <button id="btn-new" class="icon-btn">➕</button>
+    <button id="btn-export" class="icon-btn">📤</button>
+  </div>
+
+  <!-- Причины / Следствия (края экрана) -->
+  <div id="cause-bracket" class="bracket left" onclick="openCauseFrame()">‹</div>
+  <div id="effect-bracket" class="bracket right" onclick="openEffectFrame()">›</div>
+
+  <!-- Загрузка WASM -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

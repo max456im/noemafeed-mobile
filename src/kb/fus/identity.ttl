@@ -1,0 +1,47 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+
+<> dct:title "Инварианты идентичности"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+fus:AgencyResponsibility a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Агентности и Ответственности"@ru ;
+    rdfs:comment "Убеждение в способности влиять на события и нести за них ответственность."@ru .
+
+fus:MeaningCore a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Смысла"@ru ;
+    rdfs:comment "Убеждение, что жизнь имеет смысл или что смысл может быть создан."@ru .
+
+fus:SelfWorth a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Самоуважения"@ru ;
+    rdfs:comment "Безусловное принятие себя как ценности."@ru .
+
+fus:NarrativeContinuity a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Нарративной Непрерывности"@ru ;
+    rdfs:comment "Способность выстраивать связную историю о своей жизни."@ru .
+
+fus:Coherence a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Когерентности"@ru ;
+    rdfs:comment "Вера в то, что мир в принципе познаваем и предсказуем."@ru .
+
+fus:OpennessToExperience a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Открытости опыту"@ru ;
+    rdfs:comment "Гибкость внутренней картины мира."@ru .
+
+fus:EthicalFramework a fus:Invariant ;
+    fus:belongsToLevel fus:PsychicLevel ;
+    rdfs:label "Инвариант Этического Каркаса"@ru ;
+    rdfs:comment "Иерархизированная система ценностей как внутренний компас."@ru .

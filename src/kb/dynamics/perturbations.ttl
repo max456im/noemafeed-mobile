@@ -1,0 +1,50 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+@prefix pert: <http://onto16.org/pert/> .
+
+<> dct:title "Библиотека возмущений и триггеров"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:source "Соционика, Конфликтология, НЛП, Социальная инженерия" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+# === Типы возмущений ===
+
+pert:RegulatoryPrecautionism a pert:PerturbationType ;
+    rdfs:label "Регуляторный превентивизм"@ru ;
+    rdfs:comment "Запрет технологии из-за потенциального риска, без фактического вреда."@ru ;
+    pert:affectsInvariant fus:ObserverPosition ;
+    pert:suggestedResponse "Этическая реконструкция: открыть исходный код, обеспечить прозрачность."@ru .
+
+pert:AlgorithmicManipulation a pert:PerturbationType ;
+    rdfs:label "Алгоритмическая манипуляция"@ru ;
+    rdfs:comment "Использование ИИ для скрытого влияния на выбор."@ru ;
+    pert:affectsInvariant fus:AgencyResponsibility ;
+    pert:suggestedResponse "Восстановить право на объяснение и контроль."@ru .
+
+pert:SemanticNoise a pert:PerturbationType ;
+    rdfs:label "Семантический шум"@ru ;
+    rdfs:comment "Намеренное искажение значений терминов."@ru ;
+    pert:affectsInvariant fus:Distinction ;
+    pert:suggestedResponse "Вернуть чёткие определения через диалог."@ru .
+
+pert:TotalSurveillance a pert:PerturbationType ;
+    rdfs:label "Тотальный надзор"@ru ;
+    rdfs:comment "Сбор данных без согласия и цели."@ru ;
+    pert:affectsInvariant fus:FreedomInDeterminism ;
+    pert:suggestedResponse "Ограничить сбор до этически необходимого минимума."@ru .
+
+# === Триггеры ===
+
+pert:DeepfakeScandal a pert:Trigger ;
+    pert:leadsTo pert:SemanticNoise ;
+    pert:typicalActor fus:AIAgent .
+
+pert:AIInSchoolsBan a pert:Trigger ;
+    pert:leadsTo pert:RegulatoryPrecautionism ;
+    pert:typicalActor fus:OrganizationalSubject .

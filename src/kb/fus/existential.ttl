@@ -1,0 +1,42 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+
+<> dct:title "Инварианты экзистенциальности"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+fus:TemporalFinitude a fus:Invariant ;
+    fus:belongsToLevel fus:ExistentialLevel ;
+    rdfs:label "Инвариант Ограниченного Времени"@ru ;
+    rdfs:comment "Любая система смертна; её жизненный цикл запрограммирован."@ru .
+
+fus:FreedomInDeterminism a fus:Invariant ;
+    fus:belongsToLevel fus:ExistentialLevel ;
+    rdfs:label "Инвариант Свободы-в-Детерминизме"@ru ;
+    rdfs:comment "Свобода возможна только внутри материальных и видовых ограничений."@ru .
+
+fus:IrreducibleUncertainty a fus:Invariant ;
+    fus:belongsToLevel fus:ExistentialLevel ;
+    rdfs:label "Инвариант Неустранимой Неопределённости"@ru ;
+    rdfs:comment "Некоторые аспекты бытия принципиально непредсказуемы."@ru .
+
+fus:SeparatenessConnection a fus:Invariant ;
+    fus:belongsToLevel fus:ExistentialLevel ;
+    rdfs:label "Инвариант Отдельности и Связи"@ru ;
+    rdfs:comment "Субъект одновременно отделён от мира и связан с ним."@ru .
+
+fus:DialogueWithNonbeing a fus:Invariant ;
+    fus:belongsToLevel fus:ExistentialLevel ;
+    rdfs:label "Инвариант Диалога с Небытием"@ru ;
+    rdfs:comment "Осознание конечности порождает поиск смысла."@ru .
+
+fus:MeaningContinuum a fus:Invariant ;
+    fus:belongsToLevel fus:ExistentialLevel ;
+    rdfs:label "Инвариант Смыслового Континуума"@ru ;
+    rdfs:comment "Смысл не исчезает даже в условиях абсурда."@ru .

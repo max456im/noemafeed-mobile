@@ -1,0 +1,43 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+@prefix onto: <http://onto16.org/ontogeny/> .
+
+<> dct:title "Фазы онтогенеза и реконструкции"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:source "Психология развития, Теория систем, Agile" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+# === Фазы ===
+
+onto:Stability a onto:Phase ;
+    rdfs:label "Стабильность"@ru ;
+    rdfs:comment "Система функционирует в рамках устоявшихся инвариантов."@ru .
+
+onto:Crisis a onto:Phase ;
+    rdfs:label "Кризис"@ru ;
+    rdfs:comment "Нарушение одного или нескольких инвариантов."@ru .
+
+onto:ReconstructionViaEthics a onto:Phase ;
+    rdfs:label "Реконструкция через этику"@ru ;
+    rdfs:comment "Восстановление устойчивости через возврат к фундаментальным ценностям."@ru .
+
+onto:RegressionToControl a onto:Phase ;
+    rdfs:label "Регрессия к контролю"@ru ;
+    rdfs:comment "Подавление свободы ради иллюзии порядка."@ru .
+
+# === Переходы ===
+
+onto:Crisis onto:leadsTo onto:ReconstructionViaEthics ;
+    onto:preferredForTemperament "choleric", "melancholic" .
+
+onto:Crisis onto:leadsTo onto:RegressionToControl ;
+    onto:preferredForTemperament "phlegmatic" .
+
+onto:Stability onto:leadsTo onto:Crisis ;
+    onto:triggeredBy pert:PerturbationType .

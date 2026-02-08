@@ -1,0 +1,108 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix fus: <http://onto16.org/fus/> .
+@prefix zodiac: <http://onto16.org/fus/zodiac/> .
+@prefix chinese: <http://onto16.org/fus/chinese/> .
+@prefix temper: <http://onto16.org/fus/temperament/> .
+
+<> dct:title "Астропсихологические профили"@ru ;
+   dct:license <https://spdx.org/licenses/GPL-3.0-or-later> ;
+   dct:creator "Maksim Zapevalov" ;
+   dct:created "2026-02-08"^^xsd:date ;
+   owl:versionInfo "1.0.0" .
+
+# === Темпераменты ===
+
+temper:Choleric a fus:Temperament ;
+    rdfs:label "Холерик"@ru ;
+    rdfs:comment "Быстрый, энергичный, склонен к этической ясности и прямому действию."@ru .
+
+temper:Sanguine a fus:Temperament ;
+    rdfs:label "Сангвиник"@ru ;
+    rdfs:comment "Гибкий, адаптивный, ориентирован на связи."@ru .
+
+temper:Phlegmatic a fus:Temperament ;
+    rdfs:label "Флегматик"@ru ;
+    rdfs:comment "Стабильный, выдержанный, предпочитает структуру."@ru .
+
+temper:Melancholic a fus:Temperament ;
+    rdfs:label "Меланхолик"@ru ;
+    rdfs:comment "Рефлексивный, глубокий, чувствителен к несоответствиям."@ru .
+
+# === Западный зодиак → Элемент → Темперамент ===
+
+zodiac:Aries a fus:WesternSign ;
+    fus:element fus:Fire ;
+    fus:mapsToTemperament temper:Choleric .
+
+zodiac:Taurus a fus:WesternSign ;
+    fus:element fus:Earth ;
+    fus:mapsToTemperament temper:Phlegmatic .
+
+zodiac:Gemini a fus:WesternSign ;
+    fus:element fus:Air ;
+    fus:mapsToTemperament temper:Sanguine .
+
+zodiac:Cancer a fus:WesternSign ;
+    fus:element fus:Water ;
+    fus:mapsToTemperament temper:Melancholic .
+
+# ... (остальные знаки по аналогии)
+
+# === Китайский гороскоп → Элемент → Темперамент ===
+
+chinese:Rat a fus:ChineseSign ;
+    fus:element fus:Water ;
+    fus:mapsToTemperament temper:Melancholic .
+
+chinese:Ox a fus:ChineseSign ;
+    fus:element fus:Earth ;
+    fus:mapsToTemperament temper:Phlegmatic .
+
+chinese:Tiger a fus:ChineseSign ;
+    fus:element fus:Wood ;
+    fus:mapsToTemperament temper:Choleric .
+
+chinese:Rabbit a fus:ChineseSign ;
+    fus:element fus:Wood ;
+    fus:mapsToTemperament temper:Sanguine .
+
+chinese:Dragon a fus:ChineseSign ;
+    fus:element fus:Earth ;
+    fus:mapsToTemperament temper:Choleric .
+
+chinese:Snake a fus:ChineseSign ;
+    fus:element fus:Fire ;
+    fus:mapsToTemperament temper:Choleric .
+
+chinese:Horse a fus:ChineseSign ;
+    fus:element fus:Fire ;
+    fus:mapsToTemperament temper:Choleric .
+
+chinese:Goat a fus:ChineseSign ;
+    fus:element fus:Earth ;
+    fus:mapsToTemperament temper:Phlegmatic .
+
+chinese:Monkey a fus:ChineseSign ;
+    fus:element fus:Metal ;
+    fus:mapsToTemperament temper:Sanguine .
+
+chinese:Rooster a fus:ChineseSign ;
+    fus:element fus:Metal ;
+    fus:mapsToTemperament temper:Melancholic .
+
+chinese:Dog a fus:ChineseSign ;
+    fus:element fus:Earth ;
+    fus:mapsToTemperament temper:Melancholic .
+
+chinese:Pig a fus:ChineseSign ;
+    fus:element fus:Water ;
+    fus:mapsToTemperament temper:Phlegmatic .
+
+# === Правило вывода темперамента ===
+# В Rust-ядре: если год рождения → ChineseSign, и месяц → WesternSign,
+# то приоритет отдаётся ChineseSign (для определения активности),
+# а WesternSign — для уточнения этического фона.
