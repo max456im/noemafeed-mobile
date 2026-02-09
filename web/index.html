@@ -1,68 +1,161 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>NoemaFeed Mobile</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Онтологически автономный новостной агент — снижает когнитивную и эмоциональную нагрузку" />
+  
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="./icons/icon-512.png" />
   <meta name="theme-color" content="#1a1a2e" />
-  <!-- Иконки PWA -->
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png" />
+
+  <title>NoemaFeed Mobile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0f0f1b;
+      color: #e0e0ff;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+    .menu-btn, .new-chat-btn, .export-btn {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .main-news {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      text-align: center;
+      overflow-y: auto;
+    }
+    .news-title {
+      font-size: 1.4em;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+    .news-analysis {
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+    .prev-news, .next-news {
+      position: absolute;
+      width: 100%;
+      padding: 6px 16px;
+      background: rgba(15, 15, 27, 0.8);
+      color: #aaa;
+      font-size: 0.9em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+    .prev-news { top: 40px; }
+    .next-news { bottom: 40px; }
+
+    .nav-bracket {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 1.8em;
+      cursor: pointer;
+      z-index: 5;
+    }
+    .cause-bracket { left: 8px; }
+    .effect-bracket { right: 8px; }
+
+    .mode-buttons {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      display: flex;
+      gap: 8px;
+    }
+    .mode-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    .constructive { background: #4caf50; }
+    .analytical { background: #2196f3; }
+    .critical { background: #f44336; }
+
+    .rss-menu {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      color: #666;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- Верхний сниппет: предыдущая новость -->
-  <div id="prev-snippet" class="snippet top" onclick="loadPrev()">…</div>
+  <!-- Верхнее меню -->
+  <div class="header">
+    <button class="menu-btn" id="btn-menu">☰</button>
+    <div></div> <!-- пустой блок для центрирования -->
+    <div>
+      <button class="new-chat-btn" id="btn-new">➕</button>
+      <button class="export-btn" id="btn-export">📤</button>
+    </div>
+  </div>
 
-  <!-- Основная новость -->
-  <main id="current-news" class="news-main">
-    <h1 id="news-title">Загрузка...</h1>
-    <div id="news-analysis">Анализ будет здесь</div>
-    <button id="btn-full-text" class="btn-text" onclick="loadFullText()">📄 Показать полный анализ</button>
-    <div id="full-text" class="full-text hidden"></div>
-  </main>
+  <!-- Предыдущая новость (сверху) -->
+  <div class="prev-news" id="prev-news" onclick="loadPrev()">← Предыдущее событие</div>
 
-  <!-- Нижний сниппет: следующая новость -->
-  <div id="next-snippet" class="snippet bottom" onclick="loadNext()">…</div>
+  <!-- Текущая новость (центр) -->
+  <div class="main-news">
+    <div class="news-title" id="news-title">Загрузка...</div>
+    <div class="news-analysis" id="news-analysis">Анализ будет здесь</div>
+  </div>
 
-  <!-- Кнопки режимов (правый нижний угол) -->
+  <!-- Следующая новость (снизу) -->
+  <div class="next-news" id="next-news" onclick="loadNext()">Следующее событие →</div>
+
+  <!-- Боковые скобки -->
+  <button class="nav-bracket cause-bracket" id="btn-cause" onclick="openCauseFrame()">‹</button>
+  <button class="nav-bracket effect-bracket" id="btn-effect" onclick="openEffectFrame()">›</button>
+
+  <!-- Кнопки режимов -->
   <div class="mode-buttons">
-    <button id="mode-constructive" class="mode-btn green" title="Конструктивный">🟢</button>
-    <button id="mode-analytical" class="mode-btn blue" title="Аналитический">🔵</button>
-    <button id="mode-critical" class="mode-btn red" title="Критический">🔴</button>
+    <button class="mode-btn constructive" id="mode-constructive" title="Конструктивный"></button>
+    <button class="mode-btn analytical" id="mode-analytical" title="Аналитический"></button>
+    <button class="mode-btn critical" id="mode-critical" title="Критический"></button>
   </div>
 
-  <!-- Кнопки действия (под анализом) -->
-  <div class="action-buttons">
-    <button id="btn-copy" class="btn-action">📋 Копировать</button>
-    <button id="btn-share" class="btn-action">📤 Поделиться</button>
-  </div>
+  <!-- Меню RSS -->
+  <div class="rss-menu" id="rss-menu">RSS: Основной поток</div>
 
-  <!-- Меню выбора RSS (левый нижний угол) -->
-  <div class="rss-menu">
-    <select id="rss-selector">
-      <option value="default">RSS: Основной поток</option>
-      <!-- Можно добавить другие -->
-    </select>
-  </div>
-
-  <!-- Основное меню (верхний левый угол) -->
-  <div class="top-left-menu">
-    <button id="main-menu" class="icon-btn">☰</button>
-  </div>
-
-  <!-- Новый чат / Экспорт (верхний правый угол) -->
-  <div class="top-right-menu">
-    <button id="btn-new" class="icon-btn">➕</button>
-    <button id="btn-export" class="icon-btn">📤</button>
-  </div>
-
-  <!-- Причины / Следствия (края экрана) -->
-  <div id="cause-bracket" class="bracket left" onclick="openCauseFrame()">‹</div>
-  <div id="effect-bracket" class="bracket right" onclick="openEffectFrame()">›</div>
-
-  <!-- Загрузка WASM -->
-  <script type="module" src="app.js"></script>
+  <!-- Подключение WASM-логики -->
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
